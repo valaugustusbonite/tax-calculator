@@ -23,11 +23,14 @@ public class App {
     }
 }
 
+// Strategy interface of the tax calculator behavior
 interface TaxCalculationStrategy {
     public double calculateTax(double amount, String stateAbbr) throws Exception;
 }
 
- class SalesTaxCalculator implements TaxCalculationStrategy {
+
+// An implementation of a tax calculation strategy that specifically computes the sales tax depending on the state.
+class SalesTaxCalculator implements TaxCalculationStrategy {
 
     @Override
     public double calculateTax(double amount, String stateAbbr) throws Exception {
@@ -37,6 +40,7 @@ interface TaxCalculationStrategy {
     }
 }
 
+// Main calculator class to compute the tax depending on what tax calculation strategy you pass down.
 class TaxCalculator {
     public TaxCalculationStrategy calculationStrategy;
 
@@ -48,6 +52,9 @@ class TaxCalculator {
         return calculationStrategy.calculateTax(amount, stateAbbr);
     }
 }
+
+
+// Class that holds the record of different tax rates of different states.
 
 class USStateTaxRates {
     private static Map<String, Double> taxRateTable;
